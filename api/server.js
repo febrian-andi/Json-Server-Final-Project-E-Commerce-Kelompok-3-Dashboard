@@ -1,31 +1,42 @@
-// See https://github.com/typicode/json-server#module
 const jsonServer = require('json-server')
+const fs = require('fs')
+const path = require('path')
 
 const server = jsonServer.create()
 
-// Uncomment to allow write operations
-// const fs = require('fs')
-// const path = require('path')
-// const filePath = path.join('db.json')
-// const data = fs.readFileSync(filePath, "utf-8");
-// const db = JSON.parse(data);
-// const router = jsonServer.router(db)
+// Membaca data dari db.json
+const filePath = path.join(__dirname, '..', 'db.json')
+const data = fs.readFileSync(filePath, "utf-8")
+const db = JSON.parse(data)
 
-// Comment out to allow write operations
-const router = jsonServer.router('db.json')
+// Menggunakan router dengan db yang sudah dibaca
+const router = jsonServer.router(db)
 
 const middlewares = jsonServer.defaults()
 
 server.use(middlewares)
-// Add this before server.use(router)
-server.use(jsonServer.rewriter({
-    '/api/*': '/$1',
-    '/blog/:resource/:id/show': '/:resource/:id'
-}))
+
+// Menambahkan middleware untuk menulis perubahan ke db.json setelah setiap operasi
+server.use((req, res, next) => {
+  const oldSend = res.send
+  res.send = (body) => {
+    // Jika body berisi data (misalnya, setelah POST/PUT/DELETE)
+    if (body && body !== '[]') {
+      // Mengupdate db.json dengan data terbaru
+      fs.writeFileSync(filePath, JSON.stringify(db, null, 2))
+    }
+    // Melanjutkan alur pengiriman respons
+    oldSend.call(res, body)
+  }
+  next()
+})
+
 server.use(router)
+
+// Menjalankan server pada port 3000
 server.listen(3000, () => {
     console.log('JSON Server is running')
 })
 
-// Export the Server API
+// Mengekspor API server jika diperlukan
 module.exports = server
