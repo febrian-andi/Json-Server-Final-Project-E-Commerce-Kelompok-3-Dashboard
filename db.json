@@ -1,0 +1,57 @@
+{
+  "promotions": [
+    {
+      "id": "1",
+      "name": "Cuci Gudang",
+      "start_date": "2024-12-01",
+      "end_date": "2024-12-30",
+      "description": "Potongan 25% dengan pembelian diatas 150rb",
+      "amount": 50000,
+      "type": "Voucher Code",
+      "published": true,
+      "limit": 5,
+      "productID": "1"
+    },
+    {
+      "name": "Diskon Tahun Baru",
+      "start_date": "2025-01-01",
+      "end_date": "2025-01-10",
+      "description": "Potongan 20000 rupiah",
+      "amount": 20000,
+      "type": "Direct Discount",
+      "publised": false,
+      "limit": "20",
+      "product_id": "1",
+      "id": "mU1PObb"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Dell XPS 13",
+      "sku": "DLL-LPTP-XPS13-i7-1TB",
+      "stock": 15,
+      "category": "Electronic",
+      "price": "1499",
+      "description": "Flagship ultrabook featuring InfinityEdge display, 11th Gen Intel Core i7, 16GB RAM, and 1TB SSD.",
+      "published": true,
+      "variants": [
+        {
+          "id": 1,
+          "name": "Silver/16GB/1TB",
+          "price": "1499",
+          "stock": 10
+        },
+        {
+          "id": 2,
+          "name": "Black/32GB/2TB",
+          "price": "1899",
+          "stock": 5
+        }
+      ],
+      "images": [
+        "/api/placeholder/400/300"
+      ]
+    }
+  ]
+}
