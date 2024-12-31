@@ -156,8 +156,8 @@
         }
       ],
       "sub_total": 3360,
-      "status_order": "completed",
-      "tracking_number": "JNE12345678"
+      "status_order": "created",
+      "tracking_number": null
     },
     {
       "id": 2,
@@ -178,6 +178,26 @@
       "sub_total": 1499,
       "status_order": "completed",
       "tracking_number": "JNE12345678"
+    },
+    {
+      "id": 3,
+      "customer": {
+        "name": "Bagas Aditya",
+        "address": "Jalan Raya No. 1, Surabaya, Jawa Timur",
+        "username": "bagas123"
+      },
+      "payment_method": "Gopay",
+      "products": [
+        {
+          "name": "Lenovo ThinkPad X1 Carbon",
+          "price": 1299,
+          "amount": 1,
+          "total_price": 1299
+        }
+      ],
+      "sub_total": 1299,
+      "status_order": "created",
+      "tracking_number": null
     }
   ]
 }
